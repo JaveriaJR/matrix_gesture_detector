@@ -35,6 +35,8 @@ class _TransformDemo2State extends State<TransformDemo2> {
           boxer = Boxer(Offset.zero & constraints.biggest,
               Rect.fromLTWH(0, 0, width, height));
           return MatrixGestureDetector(
+            onScaleStart: (d) {},
+            onScaleEnd: (d) {},
             shouldRotate: false,
             onMatrixUpdate: (m, tm, sm, rm) {
               matrix = MatrixGestureDetector.compose(matrix!, tm, sm, null);
@@ -64,7 +66,7 @@ class _TransformDemo2State extends State<TransformDemo2> {
                         child: Text(
                           'you can move & scale me',
                           textAlign: TextAlign.center,
-                          style: Theme.of(ctx).textTheme.display1,
+                          style: Theme.of(ctx).textTheme.headlineMedium,
                         ),
                       ),
                     ),

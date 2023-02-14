@@ -38,13 +38,15 @@ class _TransformDemo3State extends State<TransformDemo3> {
           ]);
           Tween radiusTween = Tween<double>(begin: radius0, end: side / 2);
           return MatrixGestureDetector(
+            onScaleStart: (d) {},
+            onScaleEnd: (d) {},
             onMatrixUpdate: (m, tm, sm, rm) {
               matrix = MatrixGestureDetector.compose(matrix, tm, sm, null);
 
               var angle = MatrixGestureDetector.decomposeToValues(m).rotation;
               double t = (1 - cos(2 * angle)) / 2;
 
-              radius = radiusTween.transform(t);
+              radius = radiusTween.transform(t) as double;
               color = colorTween.transform(t);
               notifier.value++;
             },
@@ -73,7 +75,7 @@ class _TransformDemo3State extends State<TransformDemo3> {
                         child: Text(
                           'you can move & scale me (and "rotate" too)',
                           textAlign: TextAlign.center,
-                          style: Theme.of(ctx).textTheme.display1!.apply(
+                          style: Theme.of(ctx).textTheme.headlineMedium!.apply(
                                 color: Colors.white,
                               ),
                         ),

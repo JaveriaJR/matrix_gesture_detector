@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:matrix_gesture_detector_example/text_demo.dart';
 
 import 'blur_demo.dart';
 import 'custom_painter_demo.dart';
@@ -32,34 +33,41 @@ List<Demo> demos = [
       'Blur Demo',
       'this demo shows how to use a matrix with drawing custom shapes',
       BlurDemo()),
+  Demo(
+      'Text Demo',
+      'this demo shows how to use a matrix with dynamic text widgets',
+      TextDemo()),
 ];
 
-void main() => runApp(MaterialApp(
-      title: 'MatrixGestureDetector Demo',
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('MatrixGestureDetector Demo'),
-        ),
-        body: Builder(
-          builder: (BuildContext ctx) {
-            return Center(
-              child: SingleChildScrollView(
-                child: Column(
-                  children: demos
-                      .map((demo) => ListTile(
-                            onTap: () => showDemo(ctx, demo),
-                            leading: Icon(Icons.image),
-                            title: Text(demo.title),
-                            subtitle: Text(demo.subtitle),
-                          ))
-                      .toList(),
-                ),
-              ),
-            );
-          },
-        ),
+void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  runApp(MaterialApp(
+    title: 'MatrixGestureDetector Demo',
+    home: Scaffold(
+      appBar: AppBar(
+        title: Text('MatrixGestureDetector Demo'),
       ),
-    ));
+      body: Builder(
+        builder: (BuildContext ctx) {
+          return Center(
+            child: SingleChildScrollView(
+              child: Column(
+                children: demos
+                    .map((demo) => ListTile(
+                          onTap: () => showDemo(ctx, demo),
+                          leading: Icon(Icons.image),
+                          title: Text(demo.title),
+                          subtitle: Text(demo.subtitle),
+                        ))
+                    .toList(),
+              ),
+            ),
+          );
+        },
+      ),
+    ),
+  ));
+}
 
 showDemo(BuildContext ctx, Demo demo) {
   print('showing ${demo.title}...');

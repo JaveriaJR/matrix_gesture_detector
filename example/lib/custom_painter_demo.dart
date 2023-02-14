@@ -25,6 +25,8 @@ class _CustomPainterDemoState extends State<CustomPainterDemo> {
         title: Text('CustomPainter Demo'),
       ),
       body: MatrixGestureDetector(
+        onScaleStart: (d) {},
+        onScaleEnd: (d) {},
         onMatrixUpdate: (m, tm, sm, rm) => notifier!.value = m,
         child: CustomPaint(
           foregroundPainter: TestCustomPainter(context, notifier),
@@ -52,7 +54,7 @@ class TestCustomPainter extends CustomPainter {
     shapesPaint.style = PaintingStyle.stroke;
     ui.ParagraphBuilder builder = ui.ParagraphBuilder(ui.ParagraphStyle(
       textAlign: TextAlign.center,
-      fontSize: Theme.of(context).textTheme.display2!.fontSize! *
+      fontSize: Theme.of(context).textTheme.headlineMedium!.fontSize! *
           MediaQuery.of(context).textScaleFactor,
     ))
       ..pushStyle(ui.TextStyle(

@@ -29,11 +29,11 @@ class TransformDemo4State extends State<TransformDemo4>
   ]
       .map(
         (alignment) => DropdownMenuItem<Alignment>(
-              value: alignment,
-              child: Text(
-                alignment.toString(),
-              ),
-            ),
+          value: alignment,
+          child: Text(
+            alignment.toString(),
+          ),
+        ),
       )
       .toList();
 
@@ -70,7 +70,8 @@ class TransformDemo4State extends State<TransformDemo4>
         Color(0x66aa0000));
   }
 
-  Animation<Alignment> makeFocalPointAnimation(Alignment? begin, Alignment? end) {
+  Animation<Alignment> makeFocalPointAnimation(
+      Alignment? begin, Alignment? end) {
     return controller.drive(AlignmentTween(begin: begin, end: end));
   }
 
@@ -115,6 +116,8 @@ class TransformDemo4State extends State<TransformDemo4>
           child: Padding(
             padding: const EdgeInsets.all(32.0),
             child: MatrixGestureDetector(
+              onScaleStart: (d) {},
+              onScaleEnd: (d) {},
               onMatrixUpdate: (m, tm, sm, rm) {
                 notifier.value = m;
               },
@@ -148,10 +151,10 @@ class TransformDemo4State extends State<TransformDemo4>
           child: AnimatedSwitcher(
             duration: Duration(milliseconds: 400),
             transitionBuilder: (child, animation) => ScaleTransition(
-                  scale: animation,
-                  child: child,
-                  alignment: focalPoint!,
-                ),
+              scale: animation,
+              child: child,
+              alignment: focalPoint!,
+            ),
             switchInCurve: Curves.ease,
             switchOutCurve: Curves.ease,
             child: Stack(
@@ -168,7 +171,7 @@ class TransformDemo4State extends State<TransformDemo4>
                   alignment: Alignment(0, -0.5),
                   child: Text(
                     body.label,
-                    style: Theme.of(context).textTheme.display2,
+                    style: Theme.of(context).textTheme.headlineMedium,
                     textAlign: TextAlign.center,
                   ),
                 ),
